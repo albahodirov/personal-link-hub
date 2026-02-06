@@ -32,7 +32,7 @@ export function SocialGrid({ links }: SocialGridProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="glass-panel flex items-center justify-center aspect-square rounded-2xl hover:bg-[var(--card-hover)] transition-colors relative overflow-hidden"
-                        style={{ color: 'var(--text-secondary)' }}
+                        style={{ color: 'var(--text-primary)' }}
                     >
                         {link.icon}
                     </Link>

@@ -27,7 +27,7 @@ export function LinkCard({ title, href, icon, index, onClick, download }: LinkCa
     const content = (
         <div className="glass-panel group flex items-center justify-between p-4 rounded-2xl w-full mb-3 hover:bg-[var(--card-hover)] transition-colors">
             <div className="flex items-center gap-4">
-                <div className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
+                <div className="transition-colors" style={{ color: 'var(--text-primary)' }}>
                     {icon}
                 </div>
                 <span className="font-medium transition-colors" style={{ color: 'var(--text-primary)' }}>
