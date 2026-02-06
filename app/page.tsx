@@ -119,41 +119,42 @@ export default function Home() {
         },
     ];
 
-    {
-        icon: (
-            <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
-                <Image src="/github.png" alt="GitHub" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-            </div>
-        ),
+    const SOCIALS = [
+        {
+            icon: (
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <Image src="/icon-github.png" alt="GitHub" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                </div>
+            ),
             href: "https://github.com/albahodirov",
-                label: "GitHub"
-    },
-    {
-        icon: (
-            <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
-                <Image src="/icon-linkedin.png" alt="LinkedIn" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-            </div>
-        ),
+            label: "GitHub"
+        },
+        {
+            icon: (
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <Image src="/icon-linkedin.png" alt="LinkedIn" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                </div>
+            ),
             href: "https://www.linkedin.com/in/albahodirov/",
-                label: "LinkedIn",
+            label: "LinkedIn",
         },
-    {
-        icon: (
-            <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
-                <Image src="/medium-new.png" alt="Medium" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-            </div>
-        ),
+        {
+            icon: (
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <Image src="/medium-new.png" alt="Medium" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                </div>
+            ),
             href: "https://medium.com/@albahodirov",
-                label: "Medium",
+            label: "Medium",
         },
-    {
-        icon: (
-            <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
-                <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-            </div>
-        ),
+        {
+            icon: (
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                </div>
+            ),
             href: "https://t.me/albahodirov",
-                label: "Telegram",
+            label: "Telegram",
         },
     ];
 
