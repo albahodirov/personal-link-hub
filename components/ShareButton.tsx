@@ -4,32 +4,27 @@ import { motion } from "framer-motion";
 import { Share2 } from "lucide-react";
 import { toast } from "sonner";
 
-export function ShareButton() {
+export function ShareButton({ shareText, shareUrl }: { shareText: string; shareUrl: string }) {
     const handleShare = async () => {
         if (navigator.share) {
             try {
                 await navigator.share({
                     title: 'Alisher Bahodirov',
-                    text: 'Check out this profile!',
-                    url: window.location.href,
+                    text: shareText,
+                    url: shareUrl,
                 });
             } catch (err) {
                 console.log('Error sharing:', err);
             }
         } else {
             try {
-                await navigator.clipboard.writeText(window.location.href);
+                await navigator.clipboard.writeText(`${shareUrl} ${shareText}`);
                 toast.success("Link copied!");
             } catch (err) {
                 toast.error("Failed to copy link");
             }
         }
     };
-
-    // Note: Position is relative to the container now if we want it next to theme switch, 
-    // but user asked for "Share buttoni yonidan Light/Dark theme switch", 
-    // so we will group them in the main page layout instead of fixed positioning here.
-    // I'll make this a simple button component without fixed positioning.
 
     return (
         <motion.button
