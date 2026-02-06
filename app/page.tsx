@@ -127,7 +127,7 @@ export default function Home() {
         },
         {
             icon: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
                     <Image src="/icon-linkedin.png" alt="LinkedIn" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
                 </div>
             ),
@@ -136,7 +136,7 @@ export default function Home() {
         },
         {
             icon: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
                     <Image src="/medium-new.png" alt="Medium" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
                 </div>
             ),
@@ -145,7 +145,7 @@ export default function Home() {
         },
         {
             icon: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
+                <div className="relative w-6 h-6 opacity-90 hover:opacity-100 transition-opacity">
                     <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
                 </div>
             ),
