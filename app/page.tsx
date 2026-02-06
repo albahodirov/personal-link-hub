@@ -201,7 +201,7 @@ export default function Home() {
                 </div>
 
                 <ThemeToggle />
-                <ShareButton shareText={t.share_text} shareUrl="https://albahodirov.vercel.app" />
+                <ShareButton shareText={t.share_text} shareUrl="https://albahodirov.com" />
             </div>
 
             <div className="w-full max-w-md z-10 flex flex-col items-center">
