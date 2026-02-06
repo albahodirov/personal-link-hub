@@ -13,13 +13,15 @@ interface LinkCardProps {
     onClick?: () => void;
 }
 
-export function LinkCard({ title, href, icon, index, onClick }: LinkCardProps) {
+export function LinkCard({ title, href, icon, index, onClick, download }: LinkCardProps & { download?: boolean }) {
     const handleClick = (e: React.MouseEvent) => {
         if (onClick) {
             e.preventDefault();
             onClick();
         }
     };
+
+    const isExternal = href.startsWith("http") || href.startsWith("//");
 
     return (
         <motion.div
@@ -33,8 +35,9 @@ export function LinkCard({ title, href, icon, index, onClick }: LinkCardProps) {
                 href={href}
                 onClick={handleClick}
                 className="glass-panel group flex items-center justify-between p-4 rounded-2xl w-full mb-3 hover:bg-[var(--card-hover)] transition-colors"
-                target={onClick ? undefined : "_blank"}
-                rel={onClick ? undefined : "noopener noreferrer"}
+                target={onClick ? undefined : (isExternal || download ? "_blank" : undefined)}
+                rel={onClick ? undefined : (isExternal || download ? "noopener noreferrer" : undefined)}
+                download={download}
             >
                 <div className="flex items-center gap-4">
                     <div className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
