@@ -15,6 +15,7 @@ type Language = "uz" | "en" | "ru";
 
 const TRANSLATIONS = {
     uz: {
+        name: "Alisher Bahodirov",
         bio: "Flutter orqali kelajak avlod mobil ilovalarini ishlab chiqmoqdamiz",
         official_website: "Rasmiy Sayt",
         resume: "Rezyume",
@@ -22,9 +23,11 @@ const TRANSLATIONS = {
         book_call: "Qo'ng'iroq buyurtma qilish",
         coming_soon: "Tez kunda...",
         downloading: "Yuklab olinmoqda...",
+        share_text: "Ushbu profilni ko'ring!",
         footer: "© 2026 Alisher Bahodirov",
     },
     en: {
+        name: "Alisher Bakhadirov",
         bio: "Building the next generation of mobile apps with Flutter",
         official_website: "Official Website",
         resume: "Resume",
@@ -32,9 +35,11 @@ const TRANSLATIONS = {
         book_call: "Book a Call",
         coming_soon: "Coming Soon...",
         downloading: "Downloading...",
+        share_text: "Check out this profile!",
         footer: "© 2026 Alisher Bahodirov",
     },
     ru: {
+        name: "Алишер Баходиров",
         bio: "Создаю мобильные приложения нового поколения на Flutter",
         official_website: "Официальный сайт",
         resume: "Резюме",
@@ -42,6 +47,7 @@ const TRANSLATIONS = {
         book_call: "Заказать звонок",
         coming_soon: "Скоро...",
         downloading: "Скачивание...",
+        share_text: "Посмотрите этот профиль!",
         footer: "© 2026 Алишер Баходиров",
     },
 };
@@ -88,7 +94,7 @@ export default function Home() {
         {
             title: t.resume,
             href: "/ALISHER_BAHODIROV.png",
-            icon: <Download size={20} />,
+            icon: <FileText size={20} />,
             download: true,
             action: () => toast.success(t.downloading),
         },
@@ -115,13 +121,9 @@ export default function Home() {
 
     const SOCIALS = [
         {
-            icon: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
-                    <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-                </div>
-            ),
-            href: "https://t.me/albahodirov",
-            label: "Telegram",
+            icon: <div className="text-[var(--foreground-rgb)]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg></div>,
+            href: "https://github.com/albahodirov",
+            label: "GitHub"
         },
         {
             icon: (
@@ -141,16 +143,15 @@ export default function Home() {
             href: "https://medium.com/@albahodirov",
             label: "Medium",
         },
-    ];
-
-    // Adding Github to the end of Socials
-    const SOCIALS_FINAL = [
-        ...SOCIALS,
         {
-            icon: <div className="text-[var(--foreground-rgb)]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg></div>,
-            href: "https://github.com/albahodirov",
-            label: "GitHub"
-        }
+            icon: (
+                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
+                    <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                </div>
+            ),
+            href: "https://t.me/albahodirov",
+            label: "Telegram",
+        },
     ];
 
     return (
@@ -200,7 +201,7 @@ export default function Home() {
                 </div>
 
                 <ThemeToggle />
-                <ShareButton />
+                <ShareButton shareText={t.share_text} shareUrl="https://albahodirov.vercel.app" />
             </div>
 
             <div className="w-full max-w-md z-10 flex flex-col items-center">
@@ -212,7 +213,7 @@ export default function Home() {
                     className="w-full"
                 >
                     <ProfileHeader
-                        name="Alisher Bahodirov"
+                        name={t.name}
                         bio={t.bio}
                         imageUrl="/profile.jpg"
                     />
@@ -231,7 +232,7 @@ export default function Home() {
                         ))}
                     </div>
 
-                    <SocialGrid links={SOCIALS_FINAL.map(s => ({ ...s, icon: s.icon }))} />
+                    <SocialGrid links={SOCIALS} />
                 </motion.div>
 
                 <footer
