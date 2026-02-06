@@ -5,21 +5,21 @@ import { LinkCard } from "@/components/LinkCard";
 import { SocialGrid } from "@/components/SocialGrid";
 import { ShareButton } from "@/components/ShareButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Globe, FileText, Smartphone } from "lucide-react";
-import { motion } from "framer-motion";
+import { Globe, FileText, Smartphone, Download, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Language = "uz" | "en" | "ru";
 
 const TRANSLATIONS = {
     uz: {
-        bio: "Flutter orqali kelajak avlod mobil ilovalarini yaratmoqdamiz",
+        bio: "Flutter orqali kelajak avlod mobil ilovalarini ishlab chiqmoqdamiz",
         official_website: "Rasmiy Sayt",
         resume: "Rezyume",
         latest_project: "So'nggi Loyiha",
-        book_call: "Qo'ng'iroq qilish",
+        book_call: "Qo'ng'iroq buyurtma qilish",
         coming_soon: "Tez kunda...",
         downloading: "Yuklab olinmoqda...",
         footer: "© 2026 Alisher Bahodirov",
@@ -48,8 +48,20 @@ const TRANSLATIONS = {
 
 export default function Home() {
     const [lang, setLang] = useState<Language>("uz");
+    const [isLangOpen, setIsLangOpen] = useState(false);
     const [projectLink, setProjectLink] = useState("https://play.google.com/store/apps/details?id=com.raqobat.fairtech_mobile&pcampaignid=web_share");
     const [projectIconType, setProjectIconType] = useState<"apple" | "google">("google");
+
+    // Close language dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isLangOpen && !(event.target as Element).closest('.lang-dropdown')) {
+                setIsLangOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isLangOpen]);
 
     useEffect(() => {
         // Smart Link Logic: Detect OS
@@ -75,8 +87,8 @@ export default function Home() {
         },
         {
             title: t.resume,
-            href: "/ALISHER BAHODIROV.png",
-            icon: <FileText size={20} />,
+            href: "/ALISHER_BAHODIROV.png",
+            icon: <Download size={20} />,
             download: true,
             action: () => toast.success(t.downloading),
         },
@@ -105,15 +117,6 @@ export default function Home() {
         {
             icon: (
                 <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
-                    <Image src="/icon-instagram.png" alt="Instagram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
-                </div>
-            ),
-            href: "https://www.instagram.com/albahodirov",
-            label: "Instagram",
-        },
-        {
-            icon: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity">
                     <Image src="/icon-telegram.png" alt="Telegram" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
                 </div>
             ),
@@ -138,43 +141,11 @@ export default function Home() {
             href: "https://medium.com/@albahodirov",
             label: "Medium",
         },
-        {
-            icon: <div className="text-[var(--text-primary)]"><Globe size={24} /></div>, // GitHub icon placeholder functionality using Globe for now or we can use custom if needed, but standard lucide-react Github exists in imports
-            href: "https://github.com/albahodirov",
-            label: "GitHub",
-            customRender: (
-                <div className="relative w-6 h-6 opacity-80 hover:opacity-100 transition-opacity flex items-center justify-center">
-                    {/* Using Lucide Github icon directly as it's cleaner than an image if we don't have a specific PNG for it, 
-                 but requirement said 'move existing Latest Project icon'. 
-                 The existing Latest Project used <Github size={20} />. 
-                 We will use that here. 
-             */}
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-github"
-                    >
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 6 3 5.5 2.5 7.5-1.5 5-2 5-2 5s-.5-1-1.5-2-2-4.5c.5-1.5 1-2.5 1-4.5-5-2-4-2 2-3.5 1 1 1 2.5 1 4.5.5 .5 .5 2 1.5 4Z" />
-                        <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                </div>
-            )
-        }
     ];
 
-    // Replacing the last Social item with clean Lucide Icon logic if SVG above fails or complicates things. 
-    // Actually, let's just properly import Github from lucide-react at top and use it.
-    // We already imported Github.
-
+    // Adding Github to the end of Socials
     const SOCIALS_FINAL = [
-        ...SOCIALS.slice(0, 4),
+        ...SOCIALS,
         {
             icon: <div className="text-[var(--foreground-rgb)]"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg></div>,
             href: "https://github.com/albahodirov",
@@ -190,30 +161,54 @@ export default function Home() {
 
             {/* Top Controls */}
             <div className="fixed top-6 right-6 z-50 flex items-center gap-3">
-                {/* Language Switcher */}
-                <div className="flex items-center gap-1 p-1 rounded-full glass-panel">
-                    {(["uz", "en", "ru"] as Language[]).map((l) => (
-                        <button
-                            key={l}
-                            onClick={() => setLang(l)}
-                            className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${lang === l
-                                    ? "bg-white/10 text-[var(--text-primary)] shadow-sm"
-                                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                                }`}
-                        >
-                            {l.toUpperCase()}
-                        </button>
-                    ))}
+                {/* Language Switcher Dropdown */}
+                <div className="relative lang-dropdown">
+                    <button
+                        onClick={() => setIsLangOpen(!isLangOpen)}
+                        className="w-10 h-10 flex items-center justify-center rounded-full glass-panel hover:bg-white/10 transition-colors text-[var(--text-primary)] relative"
+                    >
+                        <div className="flex flex-col items-center justify-center">
+                            <span className="text-xs font-bold leading-none">{lang.toUpperCase()}</span>
+                        </div>
+                    </button>
+
+                    <AnimatePresence>
+                        {isLangOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                transition={{ duration: 0.1 }}
+                                className="absolute top-12 right-0 glass-panel rounded-xl overflow-hidden min-w-[3rem] flex flex-col items-center py-1 gap-1"
+                            >
+                                {(["uz", "en", "ru"] as Language[]).map((l) => (
+                                    <button
+                                        key={l}
+                                        onClick={() => {
+                                            setLang(l);
+                                            setIsLangOpen(false);
+                                        }}
+                                        className={`w-full px-3 py-2 text-xs font-medium text-center hover:bg-white/10 transition-colors ${lang === l ? "text-[var(--text-primary)] bg-white/5" : "text-[var(--text-secondary)]"
+                                            }`}
+                                    >
+                                        {l.toUpperCase()}
+                                    </button>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
-                <ShareButton />
+
                 <ThemeToggle />
+                <ShareButton />
             </div>
 
             <div className="w-full max-w-md z-10 flex flex-col items-center">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    key={lang} /* Force re-render on language change to fix mobile state issues */
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.4 }}
                     className="w-full"
                 >
                     <ProfileHeader
@@ -225,7 +220,7 @@ export default function Home() {
                     <div className="w-full space-y-4">
                         {LINKS.map((link, i) => (
                             <LinkCard
-                                key={i}
+                                key={`${i}-${lang}`} /* Ensure deep re-render */
                                 index={i}
                                 title={link.title}
                                 href={link.href}
