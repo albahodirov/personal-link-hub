@@ -16,7 +16,7 @@ type Language = "uz" | "en" | "ru";
 const TRANSLATIONS = {
     uz: {
         name: "Alisher Bahodirov",
-        bio: "Flutter orqali kelajak avlod mobil ilovalarini ishlab chiqmoqdamiz",
+        bio: "Flutter orqali kelajak avlod mobil ilovalarini ishlab chiqamiz",
         official_website: "Rasmiy Sayt",
         resume: "Rezyume",
         latest_project: "So'nggi Loyiha",
