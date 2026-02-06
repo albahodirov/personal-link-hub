@@ -125,7 +125,7 @@ export default function Home() {
             href: "mailto:albahodirov@gmail.com",
             icon: (
                 <div className="relative w-5 h-5">
-                    <Image src="/icon-phone.png" alt="Call" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
+                    <Image src="/icon-phone.png" alt="Phone" fill className="object-contain invert [.light_&]:invert-0 transition-[filter]" />
                 </div>
             ),
         },
