@@ -93,7 +93,7 @@ export default function Home() {
         },
         {
             title: t.resume,
-            href: "/ALISHER_BAHODIROV.png",
+            href: "/ALISHER_BAHODIROV.pdf",
             icon: <FileText size={20} />,
             download: true,
             action: () => toast.success(t.downloading),
