@@ -36,10 +36,10 @@ const TRANSLATIONS = {
         coming_soon: "Coming Soon...",
         downloading: "Downloading...",
         share_text: "Check out this profile!",
-        footer: "© 2026 Alisher Bahodirov",
+        footer: "© 2026 Alisher Bakhadirov",
     },
     ru: {
-        name: "Алишер Баходиров",
+        name: "Алишер Бахадиров",
         bio: "Создаю мобильные приложения нового поколения на Flutter",
         official_website: "Официальный сайт",
         resume: "Резюме",
@@ -48,7 +48,7 @@ const TRANSLATIONS = {
         coming_soon: "Скоро...",
         downloading: "Скачивание...",
         share_text: "Посмотрите этот профиль!",
-        footer: "© 2026 Алишер Баходиров",
+        footer: "© 2026 Алишер Бахадиров",
     },
 };
 
