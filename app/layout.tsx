@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Alisher Bahodirov",
     description: "Flutter Developer | Creative UI/UX",
     icons: {
-        icon: "/profile.png"
+        icon: "/favicon-rounded.png"
     },
     openGraph: {
         title: "Alisher Bahodirov",
